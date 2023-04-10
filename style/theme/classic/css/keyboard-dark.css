@@ -1,0 +1,68 @@
+/* 
+ * Position keyboard at bottom of the screen - jQuery UI isn't even loaded! 
+ */
+.ui-keyboard {
+    z-index: 1000;
+    -moz-box-shadow: 0 -5px 5px #FFFFFF;
+    -webkit-box-shadow: 0 -5px 5px #FFFFFF;
+    -ms-box-shadow: 0 -5px 5px #FFFFFF;
+    -o-box-shadow: 0 -5px 5px #FFFFFF;
+    box-shadow: 0 -5px 5px #FFFFFF;
+    -moz-border-radius: 0 0 0 0 !important;
+    -webkit-border-radius: 0 0 0 0 !important;
+    -ms-border-radius: 0 0 0 0 !important;
+    -o-border-radius: 0 0 0 0 !important;
+    border-radius: 0 0 0 0 !important;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif !important;
+    background: #282828 !important;
+    left: 0px !important;
+    top: auto !important;
+    bottom: 0px;
+    position: fixed !important;
+    width: 100%;
+    height: 200px;
+}
+
+.ui-keyboard-keyset {
+    width: 100%;
+}
+
+.ui-keyboard-button {
+    border: 1px solid #404040;
+    margin: 1px;
+    min-width: 3em;
+    height: 3em;
+    line-height: 3em;
+    vertical-align: top;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #eee;
+    text-align: center;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
+    background: #444;
+    background-image: -webkit-linear-gradient(-90deg, #444 0%, #333 100%);
+    background-image: linear-gradient(-90deg, #444 0%, #333 100%);
+    cursor: pointer;
+    overflow: hidden;
+    -moz-user-focus: ignore;
+}
+
+.ui-keyboard-0, .ui-keyboard-1, .ui-keyboard-2, .ui-keyboard-3, .ui-keyboard-4, 
+.ui-keyboard-5, .ui-keyboard-6, .ui-keyboard-7, .ui-keyboard-8, .ui-keyboard-9 {
+    width: calc(25% - 2px);
+}
+
+.ui-keyboard-bksp, .ui-keyboard-tab, .ui-keyboard-accept, .ui-keyboard-empty {
+    width: calc(25% - 2px);
+}
+
+.ui-keyboard-tab {
+    position: fixed;
+    height: 6em;
+}
+
+.page-keyboard-resize {
+    height: calc(100% - 200px) !important;
+    min-height: calc(100% - 200px) !important;
+}

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="9" id="com.orangekloud.SpecTruckv2" version="2.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:tools="http://schemas.android.com/tools">
+    <name>SpecTruckv2</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="*" />
+    <allow-intent href="*://*/*" />
+    <icon src="res/icon.png" />
+    <preference name="loglevel" value="ERROR" />
+    <preference name="loadUrlTimeoutValue" value="180000" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
+</widget>

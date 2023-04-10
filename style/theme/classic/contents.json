@@ -1,0 +1,12 @@
+{
+    "files": [
+        "css/foundation.min.css",
+        "css/qicon.css",
+        "css/eicon.css",
+        "css/base.css",
+        "css/class_base.css",
+        "css/loader.css",
+        "css/keyboard-dark.css",
+        "css/modal.css"
+    ]
+}

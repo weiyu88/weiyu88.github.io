@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{appname}</title>
+    <meta charset=utf-8>
+    <meta name="Description" content="Description here" />
+    <meta name="Keywords" content="krwlng,krawling,facebook,twitter,social media,social network,market place" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Remove the iOS safari auto format detection -->
+    <meta name = "format-detection" content = "telephone=no">
+
+    <!-- <link rel="icon" type="image/png" href="" /> -->
+    <!-- <link rel="apple-touch-icon" href=""> -->
+
+    <!-- libcss -->
+    
+    <!-- modcss -->
+
+    <link href="./style/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/c3.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/pikaday.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/picktime.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Jquery UI 1.12.1 -->
+    <link href="./style/vendor/jquery/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/vendor/jquery/jquery-ui.structure.min.css" rel="stylesheet" type="text/css"/>
+    <link href="./style/vendor/jquery/jquery-ui.theme.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="./style/theme/classic/css/foundation.min.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/qicon.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/eicon.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/base.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/class_base.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/loader.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/keyboard-dark.css" rel="stylesheet" type="text/css"/>
+	<link href="./style/theme/classic/css/modal.css" rel="stylesheet" type="text/css"/>
+
+    <!-- debugscript -->
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="./config.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/hammer.min.js"></script>
+    <script type="text/javascript" src="./script/res/am/AM.js"></script>
+    <script type="text/javascript" src="./script/res/am/AM_fx.js"></script>
+    <script type="text/javascript" src="./script/res/am/ui/AM_ui.js"></script>
+    <script type="text/javascript" src="./script/res/am/ui/AM_ui_popup.js"></script>
+    <script type="text/javascript" src="./script/res/am/ui/AM_ui_slider.js"></script>
+    <script type="text/javascript" src="./script/addons/CryptoJS/rollups/aes.js"></script>
+    <script type="text/javascript" src="./script/addons/CryptoJS/rollups/pbkdf2.js"></script>
+    <script type="text/javascript" src="./script/addons/CryptoJS/components/pad-zeropadding-min.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="./script/addons/chart/d3.min.js"></script>
+    <script type="text/javascript" src="./script/addons/chart/c3.min.js"></script>
+
+    <!-- libjs -->
+	<script type="text/javascript" src="./script/vendor/sjcl.js"></script>
+    <script type="text/javascript" src="./script/vendor/bwip-js-min.js"></script>
+    <script type="text/javascript" src="./script/vendor/qrcode.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/pikaday.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery.datetimepicker.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery.keyboard.js"></script>
+
+    <script type="text/javascript" src="./script/bin/emobiqApp.js"></script>
+
+    <!-- Vendor/3rd Party - Scripts -->
+    <script type="text/javascript" src="./script/vendor/aws/aws-sdk.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/socket-io/socket-io.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/laravel/echo.js"></script>
+
+    <!-- eMOBIQ Library -->
+    <script type="text/javascript" src="./script/library/configurations.js"></script>
+    <script type="text/javascript" src="./script/library/utility.js"></script>
+    <script type="text/javascript" src="./script/library/filter.js"></script>
+    <script type="text/javascript" src="./script/library/escpos.js"></script>
+    <script type="text/javascript" src="./script/library/cpcl.js"></script>
+    <script type="text/javascript" src="./script/vendor/jquery.keyframes.min.js"></script>
+
+    <!-- eMOBIQ Databases -->
+    <script type="text/javascript" src="./script/databases/dynamodb.js"></script>
+
+    <!-- eMOBIQ Local Connectors -->
+    <script type="text/javascript" src="./script/connector/dynamics365BC.js"></script>
+    <script type="text/javascript" src="./script/connector/dynamicsOData365BC.js"></script>
+    <script type="text/javascript" src="./script/connector/rawRest.js"></script>
+
+    <!-- modjs -->
+
+    <script type="text/javascript" src="./script/data/app.js"></script>
+    <script type="text/javascript" src="./script/data/snippet.js"></script>
+    <script type="text/javascript" src="./script/data/template.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/pdfjs/pdf.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/hammer/hammer.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/hammer/hammer-time.min.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/svg/svg-pan-zoom.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/zoom/zoom.js"></script>
+
+    <script>
+    window.TextEncoder = window.TextDecoder = null;
+    </script>
+    <script type="text/javascript" src="./script/vendor/encoder/encoding.js"></script>
+    <script type="text/javascript" src="./script/vendor/encoder/encoding-indexes.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/firebase/firebase.js"></script>
+    <script type="text/javascript" src="./script/vendor/firebase/firebase-storage.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/pull/pulltorefresh.js"></script>
+    <script type="text/javascript" src="./script/vendor/hashing.js"></script>
+
+    <script type="text/javascript" src="./script/vendor/crc-library.js"></script>
+
+    <!-- Paypal scripts -->
+    <script type="text/javascript" src="./script/vendor/paypal/checkout.js"></script>
+    <script type="text/javascript" src="./script/vendor/paypal/client.min.js"></script>
+    <script type="text/javascript" src="./script/vendor/paypal/paypal-checkout.min.js"></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script type="text/javascript" src="./script/index.js"></script>
+    <link href="./style/_app.css" rel="stylesheet" type="text/css" />
+
+    <!-- bwip-js custom fonts for bold, italic, bold & italic -->
+    <script type="text/javascript">
+        const fontPaths = {
+            'monospace': './style/font/bwip-js/FreeMono.ttf', 
+            'bold': './style/font/bwip-js/FreeMonoBold.ttf', 
+            'italic': './style/font/bwip-js/FreeMonoOblique.ttf', 
+            'bold italic': './style/font/bwip-js/FreeMonoBoldOblique.ttf'
+        };
+
+        for (const font in fontPaths) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", fontPaths[font], true);
+            xhr.responseType = "arraybuffer";
+
+            xhr.onload = () => {
+                if (xhr.response) {
+                    bwipjs.loadFont(font, xhr.response);
+                }
+            };
+            xhr.send(null);
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Start - Disable the page -->
+    <div id="pageDisable" style="position: absolute; display: none; z-index: 1500; width: 100%; height: 100%"></div>
+    <!-- End - Disable the page -->
+
+    <script type="text/javascript" src="./script/vendor/what-input.min.js"></script>
+</body>
+
+</html>
