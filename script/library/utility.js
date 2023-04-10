@@ -220,29 +220,6 @@ var utility = (function(){
     }
     
     /**
-     * Cleans the data before submission
-     * 
-     * @param {mixed} data
-     * @returns void
-     */
-    function cleanData(data) {
-        if (typeof data === 'object') {
-            for (var i in data) {
-                // check if numberic
-                // https://medium.com/javascript-in-plain-english/how-to-check-for-a-number-in-javascript-8d9024708153
-                if (isFinite(data[i])) {
-                    var num = parseFloat(data[i]);
-                    if (!isNaN(num)) {
-                        data[i] = num;
-                    }
-                } else if (typeof data[i] === 'object') {
-                    cleanData(data[i]);
-                }
-            }
-        }
-    }
-    
-    /**
      * From: https://locutus.io/php/url/rawurlencode/
      * 
      * @param {string} str 

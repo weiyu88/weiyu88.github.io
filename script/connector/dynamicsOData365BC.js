@@ -11,69 +11,15 @@ var connectorDynamicsOData365BC = (function () {
     var dataMethods = ['post', 'put', 'patch'];
 
     /**
-     * Generates a body to be submitted for batch request
-     * 
-     * @param {array} data
-     * @param {string} batchId
-     * @param {string} method
-     * @param {string} url
-     * @param {string} ent
-     */
-    function generateBody(data, batchId, method, url, ent) {
-        var result = '';
-
-        // make sure data is an array
-        if (!Array.isArray(data)) {
-            data = [data];
-        }
-
-        // loop through all data
-        for (var i in data) {
-            var changeset = 'changeset_' + (new Date().getTime()) + i;
-
-            // Get the Key
-            var key = getKeyForBatch(data[i], method);
-
-            // Get the url
-            var urlBatch = getUrlForBatch(data[i], url, ent);
-
-            // Remove the Ent from the data
-            if (typeof data[i]['Ent'] !== 'undefined') {
-                delete data[i]['Ent'];
-            }
-
-            result += "--" + batchId + "\r\n";
-            result += "Content-Type: multipart/mixed; boundary=" + changeset + "\r\n";
-            result += "\r\n";
-            result += "--" + changeset + "\r\n";
-            result += "Content-Type: application/http\r\n";
-            result += "Content-Transfer-Encoding: binary\r\n";
-            result += "Content-ID: " + (parseInt(i) + 1) + "\r\n";
-            result += "\r\n";
-            result += method.toUpperCase() + " " + encodeURI(urlBatch) + " HTTP/1.1\r\n";
-            result += "Content-Type: application/json; type=entry\r\n";
-            result += key ? "If-Match: " + key + "\r\n" : "";
-            result += "\r\n";
-            result += JSON.stringify(data[i]) + "\r\n";
-            result += "--" + changeset + "--\r\n";
-            result += "\r\n";
-        }
-
-        result += "--" + batchId + "--\r\n";
-
-        return result;
-    }
-
-    /**
      * Generates a body to be submitted for batch request in json format
-     * 
+     *
      * @param {array} data
      * @param {string} method
      * @param {string} companyWithoutUrl
      * @param {string} company
      * @param {string} ent
      */
-    function generateBodyJson(data, method, companyWithoutUrl, company, ent) {
+    function generateBody(data, method, companyWithoutUrl, company, ent) {
         // Initialize the result
         var result = {
             requests: []
@@ -93,7 +39,7 @@ var connectorDynamicsOData365BC = (function () {
 
             // Get the url
             var urlBatch = getUrlForBatch(data[i], companyWithoutUrl, ent);
-		
+
             // Get the Key
             var key = getKeyForBatch(data[i], method);
 
@@ -148,7 +94,7 @@ var connectorDynamicsOData365BC = (function () {
         if (typeof data.Ent !== 'undefined' && data.Ent) {
             ent = data.Ent;
 
-	    delete data.Ent;
+            delete data.Ent;
         }
 
         // Check if there's already an "ent" at the end of the url
@@ -342,7 +288,6 @@ var connectorDynamicsOData365BC = (function () {
                 // Generate the proper url 
                 var baseUrl = parameters['url'] + "/ODataV4",
                     url = baseUrl,
-                    //urlCompanyWithOutEnt = url + "/Company('" + parameters['company'] + "')",
                     companyWithoutUrl = "/Company('" + parameters['company'] + "')",
                     urlCompanyWithOutEnt = url + companyWithoutUrl,
                     urlCompany = urlCompanyWithOutEnt + "/" + parameters['ent'];
@@ -350,36 +295,11 @@ var connectorDynamicsOData365BC = (function () {
                 // Headers
                 var headers = {};
 
-                // Clean the data before submission
-                // comment for now
-                //utility.cleanData(parameters['data']);
-
                 // Check if there's batch parameter
                 if (parameters['batch']) {
-//                    var batchId = 'batch_' + (new Date().getTime());
-
-//                    url += "/$batch";
-
-//                    headers['Content-Type'] = 'multipart/mixed; boundary=' + batchId;
-
-//                    parameters['data'] = generateBody(parameters['data'], batchId, method, urlCompanyWithOutEnt, parameters['ent']);
-
                     url += "/$batch";
 
-                    var batchRequestFormat = 'text';
-                    if (parameters['batchRequestFormat']) {
-                        batchRequestFormat = parameters['batchRequestFormat'];
-                    }
-
-                    if (batchRequestFormat == 'text') {
-                        var batchId = 'batch_' + (new Date().getTime());
-
-                        headers['Content-Type'] = 'multipart/mixed; boundary=' + batchId;
-    
-                        parameters['data'] = generateBody(parameters['data'], batchId, method, urlCompanyWithOutEnt, parameters['ent']);    
-                    } else {
-                        parameters['data'] = generateBodyJson(parameters['data'], method, companyWithoutUrl, parameters['company'], parameters['ent']);
-                    }
+                    parameters['data'] = generateBody(parameters['data'], method, companyWithoutUrl, parameters['company'], parameters['ent']);s
                 } else if (parameters['subpath'] === 'Codeunit') {
                     // /ODataV4/{serviceName}_{procedureName}?company={companyName|companyId}
                     url = baseUrl + '/' + parameters['ent'] + '_' + parameters['function'] + '?company=' + parameters['company'];

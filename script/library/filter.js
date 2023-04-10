@@ -119,8 +119,9 @@ var oDataFilter = (function(){
             // initialize to null
             logicOp = null;
 
-            // regex pattern
-            pattern = /\'[\-\w\.\$\%\*\/\|\&\s]*\'/g,
+            // Separate all the values that is identified by "'"
+            // e.g. 'A' | 'B' = ['A', 'B']
+            pattern = /\'[^\']*\'/g,
 
             splitValue = value.split(pattern),
             splitCount = splitValue.length - 1,

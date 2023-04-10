@@ -13212,7 +13212,6 @@
             var attr = o.attr;
             this.navconnector = attr.navconnector || '';
             this.local = attr.local || '';
-	    this.batchRequestFormat = attr.batchRequestFormat || 'text';
             this.url = attr.url || '';
             this.user = attr.user || '';
             this.password = attr.password || '';
@@ -13227,7 +13226,6 @@
         request: function(prm, dt, cb, ecb) {
             this.navconnector = this.attr.navconnector || this.navconnector;
             this.local = this.attr.local || this.local;
-	    this.batchRequestFormat = this.attr.batchRequestFormat || this.batchRequestFormat;
             this.url = this.attr.url || this.url;
             this.user = this.attr.user || this.user;
             this.password = this.attr.password || this.password;
@@ -13249,8 +13247,7 @@
                 authentication: this.authentication,
                 tenantId: this.tenantId,
                 clientId: this.clientId,
-                clientSecret: this.clientSecret,
-		batchRequestFormat: this.batchRequestFormat
+                clientSecret: this.clientSecret
             };
             var odt = AM.update(odt, dt);
             var d = navService(prm, odt, this.local, parseInt(self.attr.timeOut) || 5000, function(o) {
@@ -16808,12 +16805,13 @@
                 options.multiple = prm.multiple;
             }
 
-            imageChooser.chooseImage(	
+            imageChooser.chooseImage(
                 function(data) {
+                    // Make sure it is not an array
                     if (Array.isArray(data)) {
                         data = data[0];
                     }
-			
+
                     if (prm.callback) {
                         _doAction(prm.callback, AM.update(ebd, {input: data}));
                     }
@@ -16937,22 +16935,16 @@
                 callback(element, prm.errorCallback, 'Unable to run it in browser.', null);
                 return false;
             }
-
+            var settings = cordova.plugins.scanner.getDefaultSettings();
             // Start scanning
-            cordova.plugins.barcodeScanner.scan(
+            cordova.plugins.scanner.startScanning(
                 function(result) {
-                    callback(element, prm.callback, result.text, null);
+                    callback(element, prm.callback, result, null);
                 },
                 function(error) {
                     callback(element, prm.errorCallback, error, null);
                 }, 
-                {
-                    showFlipCameraButton: prm.showFlipCameraButton ? prm.showFlipCameraButton : true, // iOS and Android
-                    showTorchButton: prm.showTorchButton ? prm.showTorchButton : true, // iOS and Android
-                    torchOn: prm.torchOn ? prm.torchOn : false, // Android, launch with the torch switched on (if available)
-                    prompt: prm.prompt ? prm.prompt : "Place a barcode inside the scan area", // Android
-                    resultDisplayDuration: prm.resultDuration ? prm.resultDuration : 500 // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                }
+                settings
             );
 
             return true;
@@ -17093,19 +17085,18 @@
         },
         // Get File Detail ( only working for image capture by location permission enabled devices )
         'fileGetDetails':function(prm){
-       
-		var element = this || {};
-	 	fileDetails.fetch(
-		prm.filePath,
+            var element = this || {};
+            fileDetails.fetch(
+                prm.filePath,
                 function(result) {
                     var data = JSON.parse(result);
                     callback(element, prm.callback, data , null);
                 },
                 function(error) {
                     callback(element, prm.errorCallback, error, null);
-                });
+            });
         },
-	// File chooser
+        // File chooser
         'fileChooser':function(prm) {
             // Store important variables
             var element = this || {};
@@ -17909,7 +17900,7 @@
 
         function a(t) {
             P = i(P, t);
-	    signatureResizeCanvas();
+            signatureResizeCanvas();
         }
 
         function c() {
@@ -21978,7 +21969,7 @@
                 pageNumber: parseInt(this.attr.pageNumber) || 1,
                 zoom: this.attr.zoom || 1,
                 scaleBy: this.attr.scaleBy || 'auto',
-	    };
+            };
             var pdf = this._pdf;
             var self = this;
 
@@ -22131,21 +22122,22 @@
                 pdf.getPage(page).then(
                     function(page) {
                         // Prepare the scale to be used
-			var scale = 1;
-			if (settings.scaleBy === "width") {
-				scale = component.offsetWidth / page.getViewport({scale: 1.0}).width;
-			} else if (settings.scaleBy === "height") {
-				scale = component.offsetHeight / page.getViewport({scale: 1.0}).height;
-			} else {
-				// Retrieve the screen layout
-				let portrait = (isCordova() ? screen.orientation.type.indexOf("portrait") > -1 : window.screen.orientation.type.indexOf("portrait") > -1);
-				// Adjusts based on portrait or landscape
-				if (portrait) {
-					scale = component.offsetWidth / page.getViewport({scale: 1.0}).width;
-				} else {
-					scale = component.offsetHeight / page.getViewport({scale: 1.0}).height;
-				}
-			}
+                        var scale = 1;
+                        if (settings.scaleBy === "width") {
+                            scale = component.offsetWidth / page.getViewport({scale: 1.0}).width;
+                        } else if (settings.scaleBy === "height") {
+                            scale = component.offsetHeight / page.getViewport({scale: 1.0}).height;
+                        } else {
+                            // Retrieve the screen layout
+                            let portrait = (isCordova() ? screen.orientation.type.indexOf("portrait") > -1 : window.screen.orientation.type.indexOf("portrait") > -1);
+
+                            // Adjusts based on portrait or landscape
+                            if (portrait) { 
+                                scale = component.offsetWidth / page.getViewport({scale: 1.0}).width;
+                            } else {
+                                scale = component.offsetHeight / page.getViewport({scale: 1.0}).height;
+                            }
+                        }
 
                         // Get the page contract
                         var viewport = page.getViewport({scale: scale});
